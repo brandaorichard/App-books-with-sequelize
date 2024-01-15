@@ -1,10 +1,15 @@
 const express = require('express');
+const Book = require('./controllers/book.controller')
 
 const app = express();
 app.use(express.json());
 
 app.get('/health/live', (req, res) => res.sendStatus(200));
 
-module.exports = app;
+app.get('/books', Book.getAll)
+app.get('/books/:id', Book.getById);
+app.post('/books', Book.create);
+app.put('/books/:id', Book.update);
+app.delete('/books/:id', Book.remove);
 
-// Setup inicial
+module.exports = app;

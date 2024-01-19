@@ -1,15 +1,14 @@
-// src/models/UserBook.js
-
 module.exports = (sequelize, _DataTypes) => {
   const UserBook = sequelize.define(
     'UserBook',
     {},
     {
       timestamps: false,
-      underscored: true,
+      underscored: true, // transforma em camel case
       tableName: 'users_books',
     });
 
+    // funcao de associar, informar para o UserBook quem esta associado a ele e de qual forma.
     UserBook.associate = (models) => {
       models.Book.belongsToMany(models.User, {
         as: 'users',
